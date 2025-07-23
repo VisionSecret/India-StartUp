@@ -23,6 +23,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import Categories from "./pages/Categories.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
       <Route path="products/:productId" element={<ProductsPage />} />
       <Route path="category/:categoryId" element={<CategoryPage />} />
       <Route path="product-details/:productId" element={<ProductDetail />} />
+      <Route path="admin-dashboard" element={<AdminDashboard />} />
     </Route>
   )
 );

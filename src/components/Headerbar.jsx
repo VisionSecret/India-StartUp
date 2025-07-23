@@ -11,6 +11,9 @@ import {
   FiTag,
   FiChevronRight,
 } from "react-icons/fi";
+import {
+  HiOutlineViewGrid,
+} from "react-icons/hi";
 
 const Headerbar = ({ onClose }) => {
   const [categories, setCategories] = useState([]);
@@ -50,6 +53,14 @@ const Headerbar = ({ onClose }) => {
               >
                 <FiHome className="w-5 h-5 text-indigo-600" />
                 <span className="font-semibold text-gray-700">Home</span>
+              </Link>
+              <Link
+                to="/admin-dashboard"
+                onClick={onClose}
+                className="flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:shadow-sm transition-all"
+              >
+                <HiOutlineViewGrid className="w-5 h-5 text-indigo-600" />
+                <span className="font-semibold text-gray-700">Dashboard</span>
               </Link>
               <Link
                 to="/shop"

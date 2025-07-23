@@ -29,7 +29,7 @@ const Footer = () => {
       {/* Floating Back to Top */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 ${
+        className={`fixed bottom-20 left-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-700 animate-bounce hover:scale-110 z-50 ${
           isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
         }`}
       >

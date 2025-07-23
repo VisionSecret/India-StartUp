@@ -73,7 +73,7 @@ const HeroSection = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-tr from-blue-50 via-white to-blue-100 text-gray-700 overflow-hidden">
+      <div className="flex flex-col items-center justify-center h-[70vh] bg-gradient-to-tr from-blue-50 via-white to-blue-100 text-gray-700 overflow-hidden">
         {/* Sparkle Icon */}
         <div className="relative mb-6">
           <div className="text-blue-600 animate-ping-slow absolute top-0 left-0">
@@ -101,7 +101,7 @@ const HeroSection = () => {
   }
 
   const renderProductCard = (product) => (
-    <>
+    <React.Fragment key={product.id}>
       {/* Desktop Card */}
       <div
         className="hidden sm:block bg-white rounded-xl sm:rounded-2xl shadow-xs sm:shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -177,18 +177,19 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
+
       {/* Mobile Card */}
-      <div className="block sm:hidden">
+      <div className="block sm:hidden mt-6">
         <Link
           to={`/product-details/${product.id}`}
-          className="flex flex-col items-center gap-2 bg-white rounded-xl shadow-sm overflow-hidden p-2 transition hover:shadow-md"
+          className="flex flex-col items-center gap-3 rounded-2xl overflow-hidden p-2"
         >
           {/* Product Image */}
-          <div className="w-full aspect-square rounded-lg overflow-hidden bg-white relative">
+          <div className="w-full aspect-square rounded-lg overflow-hidden bg-[#ffffff] relative">
             <img
               src={product.thumbnail}
               alt={product.title}
-              className="w-full h-full object-contain p-3"
+              className="w-full h-full object-cover object-center"
             />
             {product.discountPercentage > 15 && (
               <span className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-[10px] font-semibold">
@@ -198,12 +199,12 @@ const HeroSection = () => {
           </div>
 
           {/* Product Title */}
-          <h3 className="text-xs font-medium text-gray-800 text-center line-clamp-2 leading-tight">
+          <h3 className="text-lg font-bold text-zinc-800 text-center line-clamp-2 tracking-tighter leading-tight">
             {product.title}
           </h3>
         </Link>
       </div>
-    </>
+    </React.Fragment>
   );
 
   return (
@@ -220,7 +221,7 @@ const HeroSection = () => {
                 Kitchen Accessories
               </h1>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {kitchenAccessories.slice(0, 12).map((product) => (
                 <React.Fragment key={product.id}>
                   {renderProductCard(product)}
@@ -237,7 +238,7 @@ const HeroSection = () => {
                 Mobile Accessories
               </h1>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {mobileAccessories.slice(0, 8).map((product) => (
                 <React.Fragment key={product.id}>
                   {renderProductCard(product)}
@@ -254,7 +255,7 @@ const HeroSection = () => {
                 Women’s Dresses
               </h1>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {womenDresses.slice(0, 4).map((product) => (
                 <React.Fragment key={product.id}>
                   {renderProductCard(product)}
