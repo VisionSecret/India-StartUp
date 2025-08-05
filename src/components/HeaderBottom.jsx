@@ -207,7 +207,7 @@ const HeaderBottom = ({ isSticky }) => {
               </div>
 
               {/* Search Input */}
-              <div className="flex-1 relative">
+              <div className="flex-1">
                 <input
                   type="text"
                   value={searchQuery}
@@ -215,8 +215,8 @@ const HeaderBottom = ({ isSticky }) => {
                   onFocus={handleInputFocus}
                   onBlur={handleInputBlur}
                   onKeyDown={handleSearchBtn}
-                  className="w-full h-10 md:h-12 px-3 md:px-4 bg-transparent placeholder:text-sm md:placeholder:text-base text-gray-800 placeholder-gray-500 focus:outline-none"
-                  placeholder="Search products..."
+                  className="w-full h-10 md:h-12 px-3 md:px-4 bg-transparent placeholder:font-medium placeholder:text-sm md:placeholder:text-lg text-gray-800 placeholder-gray-400 focus:outline-none"
+                  placeholder="Search 10000+ Products"
                 />
 
                 {/* Suggestions Dropdown */}
@@ -251,7 +251,7 @@ const HeaderBottom = ({ isSticky }) => {
                         <Link
                           key={product.id}
                           to={`/products/${product.title}`}
-                          className="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b last:border-0"
+                          className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b last:border-0"
                           onClick={() => setInputFocus(false)}
                         >
                           <img

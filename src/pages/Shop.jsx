@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
@@ -125,7 +125,7 @@ const Shop = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen w-full bg-white">
       <div className="flex">
         {/* Sidebar - Fixed on Desktop, Slide-in on Mobile */}
         <div
@@ -197,98 +197,128 @@ const Shop = () => {
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-6">
                   {filteredProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      className="bg-white text-gray-900 rounded-2xl shadow-lg overflow-hidden p-1 md:p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 md:hover:scale-105"
-                      role="article"
-                      aria-labelledby={`product-title-${product.id}`}
-                    >
-                      {/* Image Section */}
-                      <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl aspect-square">
-                        <img
-                          src={product.thumbnail}
-                          alt={product.title}
-                          className="w-full h-full object-cover"
-                        />
-                        {product.discountPercentage > 15 && (
-                          <span className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs sm:text-sm font-bold">
-                            {Math.round(product.discountPercentage)}% OFF
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Product Info */}
-                      <div className="p-3 sm:p-4">
-                        <Link to={`/product-details/${product.id}`}>
-                          <div className="flex flex-col gap-1 mb-2">
-                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">
-                              {product.title}
-                            </h3>
-                            <span className="text-sm text-gray-500">
-                              {product.brand ? product.brand : "unknown"}
+                    <React.Fragment key={product.id}>
+                    {/* Desktop Card */}
+                      <div
+                        key={product.id}
+                        className="hidden md:block bg-white text-gray-900 rounded-2xl shadow-lg overflow-hidden p-1 md:p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 md:hover:scale-105"
+                        role="article"
+                        aria-labelledby={`product-title-${product.id}`}
+                      >
+                        {/* Image Section */}
+                        <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl aspect-square">
+                          <img
+                            src={product.thumbnail}
+                            alt={product.title}
+                            className="w-full h-full object-cover"
+                          />
+                          {product.discountPercentage > 15 && (
+                            <span className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-xs sm:text-sm font-bold">
+                              {Math.round(product.discountPercentage)}% OFF
                             </span>
-                          </div>
+                          )}
+                        </div>
 
-                          <p className="text-gray-600 text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4 leading-tight">
-                            {product.description}
-                          </p>
+                        {/* Product Info */}
+                        <div className="p-3 sm:p-4">
+                          <Link to={`/product-details/${product.id}`}>
+                            <div className="flex flex-col gap-1 mb-2">
+                              <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">
+                                {product.title}
+                              </h3>
+                              <span className="text-sm text-gray-500">
+                                {product.brand ? product.brand : "unknown"}
+                              </span>
+                            </div>
 
-                          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4">
-                            <div className="space-y-1">
-                              <div className="flex items-baseline gap-1">
-                                <span className="text-base sm:text-lg font-bold text-blue-600">
-                                  ₹{product.price}
-                                </span>
-                                <span className="text-xs sm:text-sm text-gray-400 line-through">
-                                  ₹
-                                  {(
-                                    product.price /
-                                    (1 - product.discountPercentage / 100)
-                                  ).toFixed(0)}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1 text-yellow-400">
-                                {[...Array(5)].map((_, i) => (
-                                  <FiStar
-                                    key={i}
-                                    className={`w-3 h-3 sm:w-4 sm:h-4 ${
-                                      i < Math.round(product.rating)
-                                        ? "fill-current"
-                                        : ""
-                                    }`}
-                                  />
-                                ))}
+                            <p className="text-gray-600 text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4 leading-tight">
+                              {product.description}
+                            </p>
+
+                            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4">
+                              <div className="space-y-1">
+                                <div className="flex items-baseline gap-1">
+                                  <span className="text-base sm:text-lg font-bold text-blue-600">
+                                    ₹{product.price}
+                                  </span>
+                                  <span className="text-xs sm:text-sm text-gray-400 line-through">
+                                    ₹
+                                    {(
+                                      product.price /
+                                      (1 - product.discountPercentage / 100)
+                                    ).toFixed(0)}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-1 text-yellow-400">
+                                  {[...Array(5)].map((_, i) => (
+                                    <FiStar
+                                      key={i}
+                                      className={`w-3 h-3 sm:w-4 sm:h-4 ${
+                                        i < Math.round(product.rating)
+                                          ? "fill-current"
+                                          : ""
+                                      }`}
+                                    />
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </Link>
+                          </Link>
 
-                        <button
-                          onClick={() => handleAddToCart(product)}
-                          className="w-full flex items-center justify-center gap-1 sm:gap-2 
+                          <button
+                            onClick={() => handleAddToCart(product)}
+                            className="w-full flex items-center justify-center gap-1 sm:gap-2 
                               bg-gradient-to-r from-blue-500 to-indigo-600 
                               text-white rounded-lg font-medium 
                               text-xs sm:text-sm 
                               py-2 sm:py-3
                               hover:opacity-90 transition-opacity"
-                          disabled={cartLoading[product.id]}
-                        >
-                          {cartLoading[product.id] ? (
-                            <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                              <span className="hidden sm:inline">
-                                Adding...
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <FiShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
-                              <span>Add to Cart</span>
-                            </>
-                          )}
-                        </button>
+                            disabled={cartLoading[product.id]}
+                          >
+                            {cartLoading[product.id] ? (
+                              <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                <span className="hidden sm:inline">
+                                  Adding...
+                                </span>
+                              </div>
+                            ) : (
+                              <>
+                                <FiShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
+                                <span>Add to Cart</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
-                    </div>
+
+                      {/* Mobile Card */}
+                      <div className="block sm:hidden mt-6">
+                        <Link
+                          to={`/product-details/${product.id}`}
+                          className="flex flex-col items-center gap-3 rounded-2xl overflow-hidden p-2"
+                        >
+                          {/* Product Image */}
+                          <div className="w-full aspect-square rounded-lg overflow-hidden bg-gray-100 relative">
+                            <img
+                              src={product.thumbnail}
+                              alt={product.title}
+                              className="w-full h-full object-cover object-center"
+                            />
+                            {product.discountPercentage > 15 && (
+                              <span className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded-full text-[10px] font-semibold">
+                                {Math.round(product.discountPercentage)}% OFF
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Product Title */}
+                          <h3 className="text-xl font-semibold text-zinc-900 text-center line-clamp-2 tracking-tight leading-tight">
+                            {product.title}
+                          </h3>
+                        </Link>
+                      </div>
+                    </React.Fragment>
                   ))}
                 </div>
               )}
